@@ -884,3 +884,182 @@ input[type=range]::-webkit-slider-thumb {
   .rating-dimensions { grid-template-columns: repeat(2, 1fr); }
   .hero h1 { font-size: 1.85rem; }
 }
+
+/* ═══════════════════════════════════════════════
+   BEAST AI — CUSTOM LION LOGO LAUNCHER BUTTON
+   ═══════════════════════════════════════════════ */
+
+/* Hide the default Voiceflow launcher bubble completely */
+.vfrc-launcher {
+  display: none !important;
+}
+
+/* Custom Beast launcher button */
+#beast-launcher {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  filter: drop-shadow(0 6px 20px rgba(13, 51, 73, 0.45));
+  transition: transform 0.25s ease, filter 0.25s ease;
+  user-select: none;
+}
+
+#beast-launcher:hover {
+  transform: scale(1.1) translateY(-3px);
+  filter: drop-shadow(0 10px 28px rgba(13, 51, 73, 0.6));
+}
+
+#beast-launcher:active {
+  transform: scale(0.96);
+}
+
+/* Lion logo image — circular crop with teal ring */
+#beast-launcher-img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  background: linear-gradient(135deg, #0d3349, #1a6b7c);
+  border: 3px solid #2a9d8f;
+  box-shadow:
+    0 0 0 2px rgba(42, 157, 143, 0.3),
+    0 8px 24px rgba(13, 51, 73, 0.5);
+  transition: box-shadow 0.25s ease;
+  display: block;
+}
+
+#beast-launcher:hover #beast-launcher-img {
+  box-shadow:
+    0 0 0 3px rgba(42, 157, 143, 0.6),
+    0 0 20px rgba(42, 157, 143, 0.4),
+    0 10px 30px rgba(13, 51, 73, 0.5);
+}
+
+/* "Ask Beast" label pill below the icon */
+#beast-launcher-label {
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: linear-gradient(135deg, #0d3349, #1a6b7c);
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(42, 157, 143, 0.5);
+  box-shadow: 0 2px 8px rgba(13, 51, 73, 0.4);
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════
+   VOICEFLOW CHAT WINDOW — LINKBEAST BRANDING
+   ═══════════════════════════════════════════════ */
+
+/* Chat window container */
+.vfrc-widget--chat {
+  border-radius: 20px !important;
+  box-shadow: 0 20px 60px rgba(13, 51, 73, 0.25) !important;
+  border: 1px solid #c8dde8 !important;
+  overflow: hidden !important;
+}
+
+/* Header bar */
+.vfrc-header {
+  background: linear-gradient(135deg, #0d3349 0%, #1a6b7c 100%) !important;
+  color: #ffffff !important;
+}
+
+/* Header avatar — show the lion logo */
+.vfrc-header__image {
+  background-image: url('assets/linkbeast-lion.png') !important;
+  background-size: cover !important;
+  background-position: center top !important;
+  border-radius: 50% !important;
+  border: 2px solid #2a9d8f !important;
+}
+
+/* Agent name in header */
+.vfrc-header__title {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+/* Agent description in header */
+.vfrc-header__subtitle {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* User message bubbles */
+.vfrc-message--user .vfrc-bubble {
+  background: linear-gradient(135deg, #0d3349, #1a6b7c) !important;
+  color: #ffffff !important;
+  border-radius: 18px 18px 4px 18px !important;
+}
+
+/* Beast (agent) message bubbles */
+.vfrc-message--agent .vfrc-bubble {
+  background: #f0f7f9 !important;
+  color: #0d3349 !important;
+  border-radius: 18px 18px 18px 4px !important;
+  border: 1px solid #c8dde8 !important;
+}
+
+/* Agent avatar in chat — lion logo */
+.vfrc-message--agent .vfrc-avatar {
+  background-image: url('assets/linkbeast-lion.png') !important;
+  background-size: cover !important;
+  background-position: center top !important;
+  border-radius: 50% !important;
+  border: 2px solid #2a9d8f !important;
+}
+
+/* Send button */
+.vfrc-chat-input--button {
+  background: linear-gradient(135deg, #0d3349, #1a6b7c) !important;
+  border-radius: 50% !important;
+}
+
+.vfrc-chat-input--button:hover {
+  background: linear-gradient(135deg, #1a6b7c, #2a9d8f) !important;
+}
+
+/* Input field focus */
+.vfrc-chat-input--input:focus {
+  border-color: #1a6b7c !important;
+  box-shadow: 0 0 0 2px rgba(26, 107, 124, 0.2) !important;
+}
+
+/* ═══════════════════════════════════════════════
+   MOBILE RESPONSIVE
+   ═══════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  #beast-launcher {
+    bottom: 16px;
+    right: 16px;
+  }
+
+  #beast-launcher-img {
+    width: 54px;
+    height: 54px;
+  }
+
+  .vfrc-widget--chat {
+    width: calc(100vw - 24px) !important;
+    height: 72vh !important;
+    bottom: 90px !important;
+    right: 12px !important;
+  }
+}
+
+/* Hide Beast launcher on beast-chat.html (full page embed page) */
+body.beast-chat-page #beast-launcher {
+  display: none !important;
+}

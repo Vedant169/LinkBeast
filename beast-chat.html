@@ -375,82 +375,64 @@
     }
   </style>
 </head>
-<body>
-<div class="page-wrap">
-
-  <!-- ---- SIDEBAR ---- -->
-  <aside class="sidebar">
-    <div>
-      <div class="sidebar-logo">
-        <div class="sidebar-logo-icon">🦁</div>
-        <div>
-          <div class="sidebar-logo-text">Link<span>Beast</span></div>
-          <div class="sidebar-tagline">AI Marketing Advisor</div>
-        </div>
+<body class="beast-chat-page">
+<!-- Beast AI Full-Page Embed -->
+<div style="display:flex;flex-direction:column;height:100vh;background:var(--base);">
+  <!-- Header bar -->
+  <div style="display:flex;align-items:center;gap:14px;padding:16px 28px;background:var(--base);box-shadow:0 4px 12px rgba(184,190,199,0.3);flex-shrink:0;">
+    <a href="index.html" style="display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:600;color:var(--brand);background:var(--base);box-shadow:var(--raised-sm);border-radius:50px;padding:8px 16px;text-decoration:none;">← Back</a>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:40px;height:40px;border-radius:50%;background:var(--brand-grad);box-shadow:var(--raised-sm);display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🦁</div>
+      <div>
+        <div style="font-weight:700;color:var(--text-h);font-size:0.95rem;">Beast — AI Marketing Advisor</div>
+        <div style="font-size:0.75rem;color:var(--text-muted);">🟢 Online · LinkBeast AI</div>
       </div>
     </div>
+  </div>
 
-    <div class="sidebar-section">
-      <h3>What Beast can do</h3>
-      <div class="info-card"><div class="info-card-icon">📊</div><div><div class="info-card-title">Smart Budget Matching</div><div class="info-card-desc">Get plans tailored to your ₹ budget — from ₹5K to ₹5L/month.</div></div></div>
-      <div class="info-card"><div class="info-card-icon">🌟</div><div><div class="info-card-title">Influencer Matching</div><div class="info-card-desc">Nano to Macro — matched by niche, city, and rating.</div></div></div>
-      <div class="info-card"><div class="info-card-icon">📦</div><div><div class="info-card-title">Service Recommendations</div><div class="info-card-desc">SEO, Meta Ads, SME Bundles — what's right for your goals.</div></div></div>
-    </div>
-
-    <div class="sidebar-section">
-      <h3>Platform Stats</h3>
-      <div class="sidebar-stat">
-        <div class="stat-cell"><span class="stat-num">20+</span><span class="stat-lbl">Brands</span></div>
-        <div class="stat-cell"><span class="stat-num">4.8★</span><span class="stat-lbl">Avg Rating</span></div>
-        <div class="stat-cell"><span class="stat-num">5</span><span class="stat-lbl">Services</span></div>
-        <div class="stat-cell"><span class="stat-num">100%</span><span class="stat-lbl">Indian</span></div>
-      </div>
-    </div>
-
-    <div class="sidebar-section">
-      <h3>Services</h3>
-      <div class="info-card"><div class="info-card-icon">📈</div><div><div class="info-card-title">SEO</div><div class="info-card-desc">₹5,000 – ₹80,000/month</div></div></div>
-      <div class="info-card"><div class="info-card-icon">🎯</div><div><div class="info-card-title">Meta Ads</div><div class="info-card-desc">₹5,000 – ₹1,00,000/month</div></div></div>
-      <div class="info-card"><div class="info-card-icon">🤝</div><div><div class="info-card-title">Influencers</div><div class="info-card-desc">₹5,000 – ₹2,00,000/campaign</div></div></div>
-    </div>
-
-    <a href="index.html" class="back-link">← Back to LinkBeast</a>
-  </aside>
-
-  <!-- ---- CHAT AREA ---- -->
-  <main class="chat-area">
-
-    <!-- Header -->
-    <div class="chat-header">
-      <div class="beast-avatar">🦁</div>
-      <div class="beast-header-info">
-        <h2>Beast — Marketing Advisor</h2>
-        <p>🟢 Online · Replies in seconds · 100% India-focused</p>
-      </div>
-      <div class="header-actions">
-        <button class="hdr-btn" title="Start over" onclick="restartChat()">🔄</button>
-        <button class="hdr-btn" title="WhatsApp us" onclick="window.open('https://wa.me/919999999999?text=Hi! I was using Beast on LinkBeast and want to talk to the team.','_blank')">💬</button>
-      </div>
-    </div>
-
-    <!-- Messages -->
-    <div class="chat-messages" id="chatMessages"></div>
-
-    <!-- Quick replies -->
-    <div class="quick-replies" id="quickReplies"></div>
-
-    <!-- Input bar -->
-    <div class="chat-input-bar">
-      <div class="input-wrap">
-        <input type="text" id="userInput" placeholder="Type your answer here..." autocomplete="off"/>
-        <button class="send-btn" id="sendBtn" onclick="handleSend()">➤</button>
-      </div>
-    </div>
-
-  </main>
+  <!-- Voiceflow Embedded Chat -->
+  <div
+    id="beast-embed-container"
+    style="
+      flex: 1;
+      width: 100%;
+      min-height: 520px;
+      border-radius: 0;
+      overflow: hidden;
+      background: #f0f4f6;
+    "
+  ></div>
 </div>
 
-<script src="beast.js"></script>
+<script type="text/javascript">
+  (function(d, t) {
+    var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+    v.onload = function() {
+      window.voiceflow.chat.load({
+        verify: { projectID: '69d609489ca97f4bf39b579f' },
+        url: 'https://general-runtime.voiceflow.com',
+        versionID: 'production',
+        render: {
+          mode: 'embedded',
+          target: document.getElementById('beast-embed-container')
+        },
+        assistant: {
+          title: 'Beast',
+          description: 'LinkBeast AI Marketing Advisor',
+          color: '#0d3349',
+          image: 'https://link-beast.vercel.app/assets/linkbeast-lion.png'
+        },
+        chat: {
+          showPoweredBy: false,
+          persistence: 'session'
+        }
+      });
+    };
+    v.src = 'https://cdn.voiceflow.com/widget/bundle.mjs';
+    v.type = 'text/javascript';
+    s.parentNode.insertBefore(v, s);
+  })(document, 'script');
+</script>
 <script>
   // ============================================================
   // CHAT UI CONTROLLER
