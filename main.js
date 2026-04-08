@@ -195,17 +195,7 @@ function initBeastWidget() {
     .beast-fab-text { display: flex; flex-direction: column; }
     .beast-fab-label { font-size: 0.82rem; font-weight: 700; color: #764ba2; line-height: 1.2; }
     .beast-fab-sub { font-size: 0.7rem; color: #a0aec0; font-weight: 500; }
-    .beast-fab-pulse {
-      position: absolute; top: 8px; right: 8px;
-      width: 10px; height: 10px; border-radius: 50%;
-      background: #48bb78;
-      box-shadow: 0 0 0 2px #e0e5ec;
-      animation: fabPulse 2s infinite;
-    }
-    @keyframes fabPulse {
-      0%,100% { box-shadow: 0 0 0 2px #e0e5ec, 0 0 0 4px rgba(72,187,120,0.3); }
-      50% { box-shadow: 0 0 0 2px #e0e5ec, 0 0 0 8px rgba(72,187,120,0.1); }
-    }
+
     @media (max-width: 480px) {
       .beast-fab { bottom: 20px; right: 20px; padding: 12px 16px 12px 12px; }
       .beast-fab-sub { display: none; }
@@ -218,7 +208,6 @@ function initBeastWidget() {
   fab.className = 'beast-fab';
   fab.setAttribute('aria-label', 'Talk to Beast — AI Marketing Advisor');
   fab.innerHTML = `
-    <div class="beast-fab-pulse"></div>
     <div class="beast-fab-icon">🦁</div>
     <div class="beast-fab-text">
       <span class="beast-fab-label">Talk to Beast</span>
