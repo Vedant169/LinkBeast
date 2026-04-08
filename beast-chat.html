@@ -8,242 +8,171 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦁</text></svg>" />
   <style>
-    /* ---- Beast Chat Layout ---- */
+    body { background: var(--base); }
+
+    /* ===== PAGE LAYOUT ===== */
     .beast-main {
       display: grid;
-      grid-template-columns: 340px 1fr;
-      gap: 0;
-      min-height: calc(100vh - 80px);
-      padding: 32px;
-      gap: 28px;
+      grid-template-columns: 300px 1fr;
+      gap: 24px;
+      padding: 28px 32px 40px;
       max-width: 1280px;
       margin: 0 auto;
+      min-height: calc(100vh - 80px - 280px);
     }
 
-    /* ---- LEFT SIDEBAR ---- */
+    /* ===== LEFT SIDEBAR ===== */
     .beast-sidebar {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
     }
 
     .beast-identity {
       background: var(--base);
       box-shadow: var(--shadow-raised);
       border-radius: var(--radius);
-      padding: 28px 24px;
+      padding: 24px 20px;
       text-align: center;
     }
-    .beast-avatar-large {
-      width: 80px;
-      height: 80px;
+    .beast-avatar-lg {
+      width: 72px; height: 72px;
       border-radius: 50%;
-      background: var(--brand-gradient);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.2rem;
-      margin: 0 auto 14px;
-      box-shadow: var(--shadow-raised);
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 12px;
+      box-shadow: 6px 6px 12px rgba(184,190,199,.7), -4px -4px 10px rgba(255,255,255,.9);
     }
-    .beast-identity h2 {
-      font-size: 1.3rem;
-      color: var(--text-h);
-      margin-bottom: 6px;
-    }
-    .beast-identity p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin: 0 0 16px;
-    }
-    .beast-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
+    .beast-identity h2 { font-size: 1.2rem; color: var(--text-h); margin-bottom: 4px; }
+    .beast-identity p  { font-size: 0.82rem; color: var(--text-muted); margin: 0 0 14px; }
+    .status-badge {
+      display: inline-flex; align-items: center; gap: 7px;
       background: var(--base);
       box-shadow: var(--shadow-inset-sm);
       border-radius: var(--radius-pill);
       padding: 6px 14px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--text-dark);
+      font-size: 0.75rem; font-weight: 600; color: var(--text-dark);
     }
-    .beast-status-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
+    .status-dot {
+      width: 8px; height: 8px; border-radius: 50%;
       background: #48bb78;
-      box-shadow: 0 0 6px rgba(72,187,120,0.6);
+      box-shadow: 0 0 6px rgba(72,187,120,.7);
     }
 
-    .sidebar-card {
+    .scard {
       background: var(--base);
       box-shadow: var(--shadow-raised);
       border-radius: var(--radius);
-      padding: 22px 20px;
+      padding: 18px 16px;
     }
-    .sidebar-card h3 {
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--text-muted);
-      margin-bottom: 14px;
+    .scard h3 {
+      font-size: 0.68rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .12em;
+      color: var(--text-muted); margin-bottom: 12px;
     }
 
-    .capability-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 12px;
+    .cap-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px; margin-bottom: 8px;
       background: var(--base);
       box-shadow: var(--shadow-inset-xs);
       border-radius: var(--radius-sm);
-      margin-bottom: 10px;
     }
-    .capability-item:last-child { margin-bottom: 0; }
-    .capability-icon { font-size: 1.4rem; flex-shrink: 0; }
-    .capability-title { font-size: 0.87rem; font-weight: 600; color: var(--text-dark); margin-bottom: 2px; }
-    .capability-desc { font-size: 0.77rem; color: var(--text-muted); }
+    .cap-item:last-child { margin-bottom: 0; }
+    .cap-icon { font-size: 1.25rem; flex-shrink: 0; margin-top: 1px; }
+    .cap-title { font-size: 0.84rem; font-weight: 600; color: var(--text-dark); margin-bottom: 2px; }
+    .cap-desc  { font-size: 0.74rem; color: var(--text-muted); }
 
-    .stat-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    .stat-pill {
+    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .stat-cell {
       background: var(--base);
       box-shadow: var(--shadow-inset-sm);
       border-radius: var(--radius-sm);
-      padding: 14px 10px;
-      text-align: center;
+      padding: 12px 8px; text-align: center;
     }
-    .stat-pill .num {
-      font-size: 1.2rem;
-      font-weight: 800;
-      color: var(--brand);
-      display: block;
-    }
-    .stat-pill .lbl {
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
+    .stat-num { display: block; font-size: 1.15rem; font-weight: 800; color: var(--primary); }
+    .stat-lbl { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .06em; }
 
-    .service-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+    .svc-row {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 10px; margin-bottom: 6px;
       background: var(--base);
       box-shadow: var(--shadow-raised-sm);
       border-radius: var(--radius-xs);
-      padding: 8px 12px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-dark);
-      margin-bottom: 8px;
-      width: 100%;
+      font-size: 0.8rem; font-weight: 600; color: var(--text-dark);
     }
-    .service-price {
-      margin-left: auto;
-      font-size: 0.75rem;
-      color: var(--brand);
-      font-weight: 700;
-    }
+    .svc-row:last-child { margin-bottom: 0; }
+    .svc-price { margin-left: auto; font-size: 0.72rem; color: var(--primary); font-weight: 700; }
 
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 16px;
       background: var(--base);
       box-shadow: var(--shadow-raised-sm);
       border-radius: var(--radius-pill);
-      padding: 10px 18px;
-      font-size: 0.84rem;
-      font-weight: 600;
-      color: var(--brand);
-      transition: var(--transition);
+      font-size: 0.82rem; font-weight: 600; color: var(--primary);
       text-decoration: none;
+      transition: var(--transition);
     }
-    .back-btn:hover { box-shadow: var(--shadow-raised); }
+    .back-link:hover { box-shadow: var(--shadow-raised); }
 
-    /* ---- RIGHT CHAT PANEL ---- */
+    /* ===== RIGHT CHAT PANEL ===== */
     .beast-chat-panel {
       display: flex;
       flex-direction: column;
-    }
-
-    .chat-panel-header {
       background: var(--base);
       box-shadow: var(--shadow-raised);
-      border-radius: var(--radius) var(--radius) 0 0;
-      padding: 18px 24px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      border-bottom: 1px solid var(--divider);
-    }
-    .chat-panel-header h2 {
-      font-size: 1rem;
-      color: var(--text-h);
-      margin: 0;
-    }
-    .chat-panel-header p {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin: 0;
-    }
-
-    .chat-iframe-wrapper {
-      flex: 1;
-      background: var(--base);
-      box-shadow: var(--shadow-raised);
-      border-radius: 0 0 var(--radius) var(--radius);
+      border-radius: var(--radius);
       overflow: hidden;
-      position: relative;
-      min-height: 580px;
-    }
-    .chat-iframe-wrapper iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: block;
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
     }
 
-    /* Loading shimmer */
-    .chat-loading {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    .chat-panel-hdr {
+      display: flex; align-items: center; gap: 12px;
+      padding: 16px 22px;
+      border-bottom: 1px solid rgba(184,190,199,.3);
+      flex-shrink: 0;
+    }
+    .hdr-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; flex-shrink: 0;
+      box-shadow: 4px 4px 8px rgba(184,190,199,.6), -2px -2px 6px rgba(255,255,255,.9);
+    }
+    .hdr-info h2 { font-size: 0.97rem; color: var(--text-h); margin: 0 0 2px; }
+    .hdr-info p  { font-size: 0.75rem; color: var(--text-muted); margin: 0; }
+
+    /* THE embedded widget container - fills all remaining space */
+    #beast-embed {
+      flex: 1;
+      min-height: 520px;
+      position: relative;
+    }
+
+    /* Voiceflow default launcher override — hide it inside this page */
+    #beast-embed [class*="launcher"] { display: none !important; }
+
+    /* Loading state */
+    .embed-loading {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 14px;
       background: var(--base);
       z-index: 2;
-      gap: 16px;
-      transition: opacity 0.6s ease;
+      transition: opacity .5s ease;
     }
-    .chat-loading.hidden { opacity: 0; pointer-events: none; }
-    .chat-loading-icon {
-      font-size: 3.5rem;
-      animation: beastPulse 1.5s ease-in-out infinite;
-    }
-    .chat-loading p { font-size: 0.9rem; color: var(--text-muted); margin: 0; }
-    @keyframes beastPulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.12); }
-    }
+    .embed-loading.hidden { opacity: 0; pointer-events: none; }
+    .embed-loading-icon { font-size: 3rem; animation: bpulse 1.5s ease-in-out infinite; }
+    .embed-loading p { font-size: 0.88rem; color: var(--text-muted); margin: 0; }
+    @keyframes bpulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.12)} }
 
-    /* Mobile responsive */
-    @media (max-width: 900px) {
-      .beast-main {
-        grid-template-columns: 1fr;
-        padding: 20px 16px;
-      }
-      .chat-iframe-wrapper { min-height: 480px; }
-      .beast-sidebar { display: none; } /* hide on mobile - chat takes full width */
+    /* Mobile */
+    @media (max-width: 860px) {
+      .beast-main { grid-template-columns: 1fr; padding: 16px; }
+      .beast-sidebar { display: none; }
+      #beast-embed { min-height: 480px; }
     }
   </style>
 </head>
@@ -258,14 +187,14 @@
         <span class="nav-logo-text">Link<span>Beast</span></span>
       </a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="features.html" class="nav-link">Features</a></li>
-        <li><a href="for-brands.html" class="nav-link">For Brands</a></li>
+        <li><a href="index.html"       class="nav-link">Home</a></li>
+        <li><a href="features.html"    class="nav-link">Features</a></li>
+        <li><a href="for-brands.html"  class="nav-link">For Brands</a></li>
         <li><a href="for-creators.html" class="nav-link">For Creators</a></li>
-        <li><a href="pricing.html" class="nav-link">Pricing</a></li>
-        <li><a href="about.html" class="nav-link">About</a></li>
-        <li><a href="contact.html" class="nav-link">Contact</a></li>
-        <li><a href="beast-chat.html" class="nav-link nav-beast">🦁 Beast AI</a></li>
+        <li><a href="pricing.html"     class="nav-link">Pricing</a></li>
+        <li><a href="about.html"       class="nav-link">About</a></li>
+        <li><a href="contact.html"     class="nav-link">Contact</a></li>
+        <li><a href="beast-chat.html"  class="nav-link nav-beast active">🦁 Beast AI</a></li>
       </ul>
       <div class="nav-cta">
         <a href="index.html#waitlist" class="btn btn-primary btn-sm">Get Started</a>
@@ -277,93 +206,82 @@
   </div>
 </nav>
 
-<!-- ====== MAIN LAYOUT ====== -->
+<!-- ====== MAIN ====== -->
 <div class="beast-main">
 
-  <!-- ===== LEFT SIDEBAR ===== -->
+  <!-- LEFT SIDEBAR -->
   <aside class="beast-sidebar">
 
-    <!-- Beast Identity Card -->
     <div class="beast-identity">
-      <div class="beast-avatar-large">🦁</div>
+      <div class="beast-avatar-lg">🦁</div>
       <h2>Beast</h2>
       <p>Your AI Marketing Advisor<br>by LinkBeast</p>
-      <span class="beast-status">
-        <span class="beast-status-dot"></span>
-        Online · Replies instantly
+      <span class="status-badge">
+        <span class="status-dot"></span> Online · Replies instantly
       </span>
     </div>
 
-    <!-- Capabilities -->
-    <div class="sidebar-card">
+    <div class="scard">
       <h3>What Beast can do</h3>
-      <div class="capability-item">
-        <span class="capability-icon">📊</span>
+      <div class="cap-item">
+        <span class="cap-icon">📊</span>
         <div>
-          <div class="capability-title">Smart Budget Matching</div>
-          <div class="capability-desc">Get plans tailored to your ₹ budget — from ₹5K to ₹5L/month</div>
+          <div class="cap-title">Smart Budget Matching</div>
+          <div class="cap-desc">Plans tailored to your ₹ budget — ₹5K to ₹5L/month</div>
         </div>
       </div>
-      <div class="capability-item">
-        <span class="capability-icon">🌟</span>
+      <div class="cap-item">
+        <span class="cap-icon">🌟</span>
         <div>
-          <div class="capability-title">Influencer Matching</div>
-          <div class="capability-desc">Nano to Macro — matched by niche, city &amp; rating</div>
+          <div class="cap-title">Influencer Matching</div>
+          <div class="cap-desc">Nano to Macro — by niche, city &amp; rating</div>
         </div>
       </div>
-      <div class="capability-item">
-        <span class="capability-icon">📦</span>
+      <div class="cap-item">
+        <span class="cap-icon">📦</span>
         <div>
-          <div class="capability-title">Service Recommendations</div>
-          <div class="capability-desc">SEO, Meta Ads, SME Bundles — what's right for your goals</div>
+          <div class="cap-title">Service Recommendations</div>
+          <div class="cap-desc">SEO, Meta Ads, SME Bundles — right for your goals</div>
         </div>
       </div>
     </div>
 
-    <!-- Platform Stats -->
-    <div class="sidebar-card">
+    <div class="scard">
       <h3>Platform Stats</h3>
-      <div class="stat-row">
-        <div class="stat-pill"><span class="num">20+</span><span class="lbl">Brands</span></div>
-        <div class="stat-pill"><span class="num">4.8★</span><span class="lbl">Avg Rating</span></div>
-        <div class="stat-pill"><span class="num">5</span><span class="lbl">Services</span></div>
-        <div class="stat-pill"><span class="num">100%</span><span class="lbl">Indian</span></div>
+      <div class="stat-grid">
+        <div class="stat-cell"><span class="stat-num">20+</span><span class="stat-lbl">Brands</span></div>
+        <div class="stat-cell"><span class="stat-num">4.8★</span><span class="stat-lbl">Avg Rating</span></div>
+        <div class="stat-cell"><span class="stat-num">5</span><span class="stat-lbl">Services</span></div>
+        <div class="stat-cell"><span class="stat-num">100%</span><span class="stat-lbl">Indian</span></div>
       </div>
     </div>
 
-    <!-- Services Pricing -->
-    <div class="sidebar-card">
+    <div class="scard">
       <h3>Service Pricing</h3>
-      <div class="service-tag">📈 SEO <span class="service-price">₹5K–₹80K/mo</span></div>
-      <div class="service-tag">🎯 Meta Ads <span class="service-price">₹5K–₹1L/mo</span></div>
-      <div class="service-tag">🤝 Influencers <span class="service-price">₹5K–₹2L/campaign</span></div>
+      <div class="svc-row">📈 SEO <span class="svc-price">₹5K–₹80K/mo</span></div>
+      <div class="svc-row">🎯 Meta Ads <span class="svc-price">₹5K–₹1L/mo</span></div>
+      <div class="svc-row">🤝 Influencers <span class="svc-price">₹5K–₹2L</span></div>
     </div>
 
-    <a href="index.html" class="back-btn">← Back to LinkBeast</a>
+    <a href="index.html" class="back-link">← Back to LinkBeast</a>
   </aside>
 
-  <!-- ===== RIGHT CHAT PANEL ===== -->
+  <!-- RIGHT CHAT PANEL -->
   <div class="beast-chat-panel">
-    <div class="chat-panel-header">
-      <div class="beast-avatar-large" style="width:44px;height:44px;font-size:1.3rem;margin:0;flex-shrink:0;">🦁</div>
-      <div>
+    <div class="chat-panel-hdr">
+      <div class="hdr-avatar">🦁</div>
+      <div class="hdr-info">
         <h2>Beast — Marketing Advisor</h2>
         <p>🟢 Live · India-focused · Replies in seconds</p>
       </div>
     </div>
-    <div class="chat-iframe-wrapper">
-      <!-- Loading state -->
-      <div class="chat-loading" id="chatLoading">
-        <div class="chat-loading-icon">🦁</div>
-        <p>Beast is getting ready…</p>
+
+    <!-- Voiceflow embedded widget renders here -->
+    <div id="beast-embed">
+      <div class="embed-loading" id="embedLoading">
+        <div class="embed-loading-icon">🦁</div>
+        <p>Beast is waking up…</p>
       </div>
-      <!-- Voiceflow chat iframe -->
-      <iframe
-        src="https://creator.voiceflow.com/share/69d609489ca97f4bf39b579f/development"
-        title="Beast — LinkBeast AI Marketing Advisor"
-        allow="microphone"
-        onload="document.getElementById('chatLoading').classList.add('hidden')"
-      ></iframe>
     </div>
   </div>
 
@@ -374,62 +292,78 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="index.html" class="nav-logo" style="margin-bottom:0;">
+        <a href="index.html" class="nav-logo">
           <div class="nav-logo-icon">🔗</div>
           <span class="nav-logo-text">Link<span>Beast</span></span>
         </a>
-        <p>India's first unified digital marketing ecosystem — connecting SMEs with verified creators, freelancers, and full-service marketing. By ConnectSutra Digital.</p>
+        <p>India's first unified digital marketing ecosystem. By ConnectSutra Digital.</p>
         <div class="footer-social">
-          <a href="#" class="social-btn" aria-label="Instagram">📸</a>
-          <a href="#" class="social-btn" aria-label="LinkedIn">💼</a>
-          <a href="https://wa.me/919999999999" class="social-btn" aria-label="WhatsApp">💬</a>
-          <a href="#" class="social-btn" aria-label="Twitter">🐦</a>
+          <a href="#" class="social-btn">📸</a>
+          <a href="#" class="social-btn">💼</a>
+          <a href="https://wa.me/919999999999" class="social-btn">💬</a>
         </div>
       </div>
-      <div class="footer-col">
-        <h4>Platform</h4>
-        <div class="footer-links">
-          <a href="features.html">Features</a>
-          <a href="pricing.html">Pricing</a>
-          <a href="for-brands.html">For Brands</a>
-          <a href="for-creators.html">For Creators</a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <div class="footer-links">
-          <a href="about.html">About Us</a>
-          <a href="contact.html">Contact</a>
-          <a href="index.html#waitlist">Join Waitlist</a>
-          <a href="#">Blog</a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>Get in Touch</h4>
+      <div class="footer-col"><h4>Platform</h4><div class="footer-links">
+        <a href="features.html">Features</a><a href="pricing.html">Pricing</a>
+        <a href="for-brands.html">For Brands</a><a href="for-creators.html">For Creators</a>
+      </div></div>
+      <div class="footer-col"><h4>Company</h4><div class="footer-links">
+        <a href="about.html">About Us</a><a href="contact.html">Contact</a>
+        <a href="index.html#waitlist">Join Waitlist</a>
+      </div></div>
+      <div class="footer-col"><h4>Get in Touch</h4>
         <div class="footer-contact-item"><span class="icon">📍</span> New Delhi, India</div>
         <div class="footer-contact-item"><span class="icon">📧</span> hello@linkbeast.in</div>
-        <div class="footer-contact-item"><span class="icon">📱</span> +91 99999 99999</div>
-        <a href="https://wa.me/919999999999" class="whatsapp-btn" style="font-size:0.85rem;padding:12px 20px;margin-top:12px;">
-          💬 WhatsApp Us
-        </a>
+        <a href="https://wa.me/919999999999" class="whatsapp-btn" style="font-size:.85rem;padding:12px 20px;margin-top:12px;">💬 WhatsApp Us</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2025 ConnectSutra Digital. All rights reserved. | LinkBeast — Let's Grow 🚀</span>
-      <div style="display:flex;gap:20px;">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-      </div>
+      <span>© 2025 ConnectSutra Digital. All rights reserved.</span>
+      <div style="display:flex;gap:20px;"><a href="#">Privacy</a><a href="#">Terms</a></div>
     </div>
   </div>
 </footer>
 
-<!-- Lion launcher button (hidden on this page - already on Beast Chat) -->
-<a id="beast-launcher" href="beast-chat.html" title="Chat with Beast AI" style="display:none;">
+<!-- Hidden launcher (not shown on this page) -->
+<a id="beast-launcher" href="beast-chat.html" style="display:none;">
   <img src="assets/linkbeast-lion.png" alt="Beast AI" id="beast-launcher-img" />
   <span id="beast-launcher-label">Ask Beast</span>
 </a>
 
 <script src="main.js"></script>
+
+<!-- Voiceflow embedded widget — renders inside #beast-embed, not as floating popup -->
+<script type="text/javascript">
+  (function(d, t) {
+    var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+    v.onload = function() {
+      window.voiceflow.chat.load({
+        verify: { projectID: '69d609489ca97f4bf39b579f' },
+        url: 'https://general-runtime.voiceflow.com',
+        versionID: 'development',
+        render: {
+          mode: 'embedded',
+          target: document.getElementById('beast-embed')
+        },
+        assistant: {
+          title: 'Beast',
+          description: 'LinkBeast AI Marketing Advisor',
+          color: '#0d3349',
+          image: 'https://link-beast.vercel.app/assets/linkbeast-lion.png'
+        },
+        chat: {
+          showPoweredBy: false,
+          persistence: 'session'
+        }
+      });
+      // Hide loading spinner once widget loads
+      document.getElementById('embedLoading').classList.add('hidden');
+    };
+    v.src = 'https://cdn.voiceflow.com/widget/bundle.mjs';
+    v.type = 'text/javascript';
+    s.parentNode.insertBefore(v, s);
+  })(document, 'script');
+</script>
+
 </body>
 </html>
