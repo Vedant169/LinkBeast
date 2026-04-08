@@ -1,559 +1,279 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Beast — LinkBeast AI Marketing Advisor</title>
-  <meta name="description" content="Chat with Beast, LinkBeast's AI marketing advisor. Get personalised service recommendations and influencer matches for your Indian brand in under 2 minutes."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦁</text></svg>"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beast AI — LinkBeast Marketing Advisor</title>
+  <meta name="description" content="Chat with Beast, LinkBeast's AI marketing advisor. Get personalised service recommendations and influencer matches for your Indian brand in under 2 minutes." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦁</text></svg>" />
   <style>
-    /* ========================================
-       BEAST CHAT — NEUMORPHIC DESIGN
-    ======================================== */
-    :root {
-      --base: #e0e5ec;
-      --shadow-dark: #b8bec7;
-      --shadow-light: #ffffff;
-      --raised: 6px 6px 12px #b8bec7, -6px -6px 12px #ffffff;
-      --raised-lg: 8px 8px 18px #b8bec7, -8px -8px 18px #ffffff;
-      --raised-sm: 3px 3px 6px #b8bec7, -3px -3px 6px #ffffff;
-      --inset: inset 4px 4px 8px #b8bec7, inset -4px -4px 8px #ffffff;
-      --inset-sm: inset 3px 3px 6px #b8bec7, inset -3px -3px 6px #ffffff;
-      --brand: #764ba2;
-      --brand-alt: #667eea;
-      --brand-grad: linear-gradient(145deg, #764ba2, #667eea);
-      --text-h: #2d3748;
-      --text-body: #4a5568;
-      --text-muted: #8a9bb0;
-      --text-light: #a0aec0;
-      --divider: #d1d9e6;
-      --success: #48bb78;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body {
-      height: 100%; font-family: 'Poppins', 'Inter', sans-serif;
-      background: var(--base); color: var(--text-body); overflow: hidden;
-    }
-
-    /* ---- LAYOUT ---- */
-    .page-wrap {
-      display: grid;
-      grid-template-columns: 360px 1fr;
-      height: 100vh;
-    }
-
-    /* ---- LEFT SIDEBAR ---- */
-    .sidebar {
+    /* ---- Beast Chat Page Specific ---- */
+    .beast-chat-hero {
       background: var(--base);
-      box-shadow: 6px 0 20px rgba(184,190,199,0.4);
-      padding: 32px 28px;
-      display: flex; flex-direction: column; gap: 24px;
-      overflow-y: auto;
-      position: relative;
-      z-index: 2;
+      padding: 40px 0 0;
+      text-align: center;
     }
-    .sidebar-logo {
-      display: flex; align-items: center; gap: 12px; margin-bottom: 4px;
+    .beast-chat-hero .section-label {
+      margin-bottom: 0.75rem;
     }
-    .sidebar-logo-icon {
-      width: 44px; height: 44px; border-radius: 12px;
-      background: var(--brand-grad);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem; box-shadow: var(--raised-sm);
+    .beast-chat-hero h1 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      margin-bottom: 0.6rem;
+      color: var(--text-h);
     }
-    .sidebar-logo-text { font-size: 1.3rem; font-weight: 800; color: var(--brand); }
-    .sidebar-logo-text span { color: var(--brand-alt); }
-    .sidebar-tagline { font-size: 0.8rem; color: var(--text-light); font-weight: 500; }
+    .beast-chat-hero p {
+      color: var(--text-muted);
+      font-size: 0.97rem;
+      max-width: 520px;
+      margin: 0 auto 1.5rem;
+    }
 
-    .sidebar-section { margin-top: 4px; }
-    .sidebar-section h3 {
-      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.12em; color: var(--text-light); margin-bottom: 12px;
+    /* Features strip */
+    .beast-features {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
     }
-    .info-card {
+    .beast-feature-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
       background: var(--base);
-      box-shadow: var(--inset-sm);
-      border-radius: 16px; padding: 18px 20px;
-      display: flex; align-items: flex-start; gap: 12px;
-      margin-bottom: 10px;
+      box-shadow: var(--shadow-inset-sm);
+      border-radius: var(--radius-pill);
+      padding: 7px 16px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-dark);
     }
-    .info-card-icon { font-size: 1.5rem; flex-shrink: 0; }
-    .info-card-title { font-size: 0.88rem; font-weight: 600; color: var(--text-h); margin-bottom: 3px; }
-    .info-card-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
 
-    .sidebar-stat {
+    /* Iframe wrapper */
+    .beast-iframe-section {
+      padding: 0 0 60px;
       background: var(--base);
-      box-shadow: var(--inset);
-      border-radius: 14px; padding: 16px 20px;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 12px;
     }
-    .stat-cell { text-align: center; }
-    .stat-num { font-size: 1.2rem; font-weight: 800; color: var(--brand); display: block; }
-    .stat-lbl { font-size: 0.72rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; }
-
-    .back-link {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 0.82rem; font-weight: 600; color: var(--brand);
-      background: var(--base); box-shadow: var(--raised-sm);
-      border-radius: 50px; padding: 8px 16px;
-      transition: all 0.25s ease; text-decoration: none; margin-top: auto;
+    .beast-iframe-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 32px;
     }
-    .back-link:hover { box-shadow: var(--raised); }
-
-    /* ---- CHAT AREA ---- */
-    .chat-area {
-      display: flex; flex-direction: column;
+    .beast-iframe-card {
       background: var(--base);
+      box-shadow: var(--shadow-raised-lg);
+      border-radius: var(--radius);
       overflow: hidden;
+      height: 600px;
+      position: relative;
+    }
+    .beast-iframe-card iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
     }
 
-    /* Chat header */
-    .chat-header {
-      padding: 20px 32px;
-      display: flex; align-items: center; gap: 16px;
+    /* Loading overlay */
+    .beast-loading {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       background: var(--base);
-      box-shadow: 0 4px 12px rgba(184,190,199,0.3);
-      flex-shrink: 0; z-index: 1;
+      z-index: 2;
+      gap: 16px;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
     }
-    .beast-avatar {
-      width: 48px; height: 48px; border-radius: 50%;
-      background: var(--brand-grad);
-      box-shadow: var(--raised-sm);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem; flex-shrink: 0; position: relative;
+    .beast-loading.hidden { opacity: 0; }
+    .beast-loading-icon {
+      font-size: 3rem;
+      animation: pulse 1.5s ease-in-out infinite;
     }
-    .beast-avatar::after {
-      content: ''; position: absolute; bottom: 2px; right: 2px;
-      width: 10px; height: 10px; border-radius: 50%;
-      background: #48bb78;
-      box-shadow: 0 0 0 2px var(--base);
+    .beast-loading p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin: 0;
     }
-    .beast-header-info h2 { font-size: 1rem; font-weight: 700; color: var(--text-h); }
-    .beast-header-info p  { font-size: 0.78rem; color: var(--text-muted); }
-    .header-actions { margin-left: auto; display: flex; gap: 10px; }
-    .hdr-btn {
-      width: 38px; height: 38px; border-radius: 50%;
-      background: var(--base); box-shadow: var(--raised-sm);
-      border: none; cursor: pointer; font-size: 1rem;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--text-muted); transition: all 0.25s ease;
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
     }
-    .hdr-btn:hover { box-shadow: var(--raised); color: var(--brand); }
-    .hdr-btn:active { box-shadow: var(--inset-sm); }
 
-    /* Messages */
-    .chat-messages {
-      flex: 1; overflow-y: auto; padding: 28px 32px;
-      display: flex; flex-direction: column; gap: 20px;
-      scroll-behavior: smooth;
+    /* Tips card */
+    .beast-tips {
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
     }
-    .chat-messages::-webkit-scrollbar { width: 5px; }
-    .chat-messages::-webkit-scrollbar-track { background: transparent; }
-    .chat-messages::-webkit-scrollbar-thumb { background: var(--shadow-dark); border-radius: 10px; }
-
-    /* Message bubbles */
-    .msg { display: flex; gap: 12px; max-width: 88%; animation: msgIn 0.35s ease; }
-    .msg.beast { align-self: flex-start; }
-    .msg.user  { align-self: flex-end; flex-direction: row-reverse; }
-    @keyframes msgIn { from { opacity:0; transform: translateY(12px); } to { opacity:1; transform:translateY(0); } }
-
-    .msg-avatar {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: var(--brand-grad); box-shadow: var(--raised-sm);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; flex-shrink: 0; align-self: flex-end;
-    }
-    .msg.user .msg-avatar { background: var(--base); color: var(--brand); font-size: 0.8rem; font-weight: 700; }
-
-    .msg-bubble {
+    .beast-tip {
       background: var(--base);
-      box-shadow: var(--raised);
-      border-radius: 18px 18px 18px 4px;
-      padding: 16px 20px;
-      font-size: 0.93rem; line-height: 1.65;
-      color: var(--text-body);
-      max-width: 100%;
+      box-shadow: var(--shadow-raised-sm);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      text-align: center;
     }
-    .msg.user .msg-bubble {
-      background: var(--brand-grad);
-      color: white;
-      border-radius: 18px 18px 4px 18px;
-      box-shadow: var(--raised-sm);
-    }
-    .msg-time { font-size: 0.68rem; color: var(--text-light); margin-top: 5px; padding: 0 4px; }
-    .msg.user .msg-time { text-align: right; }
+    .beast-tip-icon { font-size: 1.8rem; margin-bottom: 10px; }
+    .beast-tip h4 { font-size: 0.88rem; color: var(--text-dark); margin-bottom: 5px; }
+    .beast-tip p { font-size: 0.8rem; color: var(--text-muted); margin: 0; }
 
-    /* Typing indicator */
-    .typing-indicator { display: flex; align-items: center; gap: 5px; padding: 12px 16px; }
-    .typing-dot {
-      width: 8px; height: 8px; border-radius: 50%; background: var(--text-light);
-      animation: typingPulse 1.2s infinite;
-    }
-    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
-    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes typingPulse { 0%,100%{opacity:0.3;transform:scale(0.8)} 50%{opacity:1;transform:scale(1)} }
-
-    /* ---- INPUT BAR ---- */
-    .chat-input-bar {
-      padding: 16px 32px 24px;
-      flex-shrink: 0;
-    }
-    .input-wrap {
-      display: flex; align-items: center; gap: 12px;
-      background: var(--base);
-      box-shadow: var(--inset);
-      border-radius: 60px; padding: 8px 8px 8px 24px;
-    }
-    #userInput {
-      flex: 1; background: transparent; border: none; outline: none;
-      font-family: inherit; font-size: 0.95rem; color: var(--text-body);
-      padding: 8px 0;
-    }
-    #userInput::placeholder { color: var(--text-light); }
-    .send-btn {
-      width: 46px; height: 46px; border-radius: 50%;
-      background: var(--brand-grad);
-      box-shadow: var(--raised-sm);
-      border: none; cursor: pointer; font-size: 1.1rem; color: white;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; transition: all 0.25s ease;
-    }
-    .send-btn:hover { box-shadow: var(--raised); transform: scale(1.05); }
-    .send-btn:active { box-shadow: inset 3px 3px 6px rgba(90,58,128,0.4); }
-
-    /* ---- QUICK REPLIES ---- */
-    .quick-replies {
-      display: flex; gap: 8px; flex-wrap: wrap;
-      padding: 0 32px 12px;
-    }
-    .quick-chip {
-      background: var(--base); box-shadow: var(--raised-sm);
-      border: none; border-radius: 50px; padding: 7px 16px;
-      font-family: inherit; font-size: 0.8rem; font-weight: 600;
-      color: var(--brand); cursor: pointer; transition: all 0.25s ease;
-    }
-    .quick-chip:hover { box-shadow: var(--raised); transform: translateY(-1px); }
-    .quick-chip:active { box-shadow: var(--inset-sm); }
-
-    /* ---- RECOMMENDATION BLOCKS ---- */
-    .beast-rec { display: flex; flex-direction: column; gap: 14px; width: 100%; }
-    .rec-header {
-      font-size: 1rem; font-weight: 700; color: var(--text-h);
-      padding-bottom: 12px; border-bottom: 1px solid var(--divider);
-    }
-    .rec-meta {
-      display: flex; flex-wrap: wrap; gap: 10px; font-size: 0.85rem; color: var(--text-muted);
-    }
-    .rec-meta span { background: var(--base); box-shadow: var(--inset-sm); border-radius: 8px; padding: 5px 12px; }
-    .rec-section-title {
-      font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.1em; color: var(--brand); margin-top: 4px;
-    }
-    .rec-note {
-      background: var(--base); box-shadow: var(--inset-sm);
-      border-radius: 12px; padding: 14px 16px; font-size: 0.88rem; color: var(--text-muted);
-      border-left: 3px solid var(--brand);
-    }
-
-    .service-block {
-      background: var(--base); box-shadow: var(--raised);
-      border-radius: 14px; padding: 18px 20px;
-    }
-    .service-name { font-weight: 700; color: var(--text-h); font-size: 0.93rem; margin-bottom: 4px; }
-    .service-label { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 10px; }
-    .service-delivers {
-      display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; padding-left: 0;
-    }
-    .service-delivers li {
-      font-size: 0.82rem; color: var(--text-muted);
-      background: var(--base); box-shadow: var(--inset-sm);
-      border-radius: 8px; padding: 6px 12px; list-style: none;
-      display: flex; align-items: center; gap: 6px;
-    }
-    .service-delivers li::before { content: '✓'; color: var(--brand); font-weight: 700; }
-    .service-price { font-size: 0.9rem; color: var(--text-h); }
-    .service-price strong { color: var(--brand); font-size: 1rem; }
-
-    .inf-card {
-      background: var(--base); box-shadow: var(--raised);
-      border-radius: 14px; padding: 16px 18px;
-      display: flex; align-items: flex-start; gap: 14px;
-    }
-    .inf-rank {
-      width: 32px; height: 32px; border-radius: 50%;
-      background: var(--brand-grad); color: white;
-      font-weight: 700; font-size: 0.85rem;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; box-shadow: var(--raised-sm);
-    }
-    .inf-info { flex: 1; }
-    .inf-handle { font-weight: 700; color: var(--text-h); font-size: 0.93rem; margin-bottom: 3px; }
-    .inf-tier {
-      display: inline-block; font-size: 0.68rem; font-weight: 700;
-      color: var(--brand); background: var(--base);
-      box-shadow: var(--raised-sm); border-radius: 50px; padding: 2px 8px; margin-left: 6px;
-    }
-    .inf-meta { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 5px; }
-    .inf-stats { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 5px; }
-    .inf-stats strong { color: var(--text-h); }
-    .inf-why { font-size: 0.78rem; color: var(--brand); font-style: italic; }
-
-    .beast-take {
-      background: var(--base); box-shadow: var(--inset-sm);
-      border-radius: 14px; padding: 18px 20px;
-    }
-    .beast-take p { font-size: 0.88rem; color: var(--text-body); margin-top: 8px; line-height: 1.65; }
-
-    .rec-cta { display: flex; flex-direction: column; gap: 10px; }
-    .cta-btns { display: flex; gap: 10px; flex-wrap: wrap; }
-    .chat-btn-action {
-      background: var(--brand-grad); color: white;
-      border: none; border-radius: 50px; padding: 10px 22px;
-      font-family: inherit; font-size: 0.85rem; font-weight: 600;
-      cursor: pointer; box-shadow: var(--raised-sm); transition: all 0.25s ease;
-    }
-    .chat-btn-action:hover { box-shadow: var(--raised); transform: translateY(-2px); }
-    .chat-btn-action:active { box-shadow: var(--inset-sm); }
-    .chat-btn-action.secondary {
-      background: var(--base); color: var(--brand);
-      box-shadow: var(--raised-sm);
-    }
-    .chat-btn-action.secondary:hover { box-shadow: var(--raised); }
-
-    /* Services menu */
-    .services-menu { display: flex; flex-direction: column; gap: 8px; width: 100%; }
-    .svc-item {
-      display: flex; align-items: center; gap: 12px;
-      background: var(--base); box-shadow: var(--raised-sm);
-      border-radius: 12px; padding: 13px 16px;
-      cursor: pointer; font-size: 0.88rem; color: var(--text-body);
-      transition: all 0.25s ease; border: 2px solid transparent;
-    }
-    .svc-item:hover { box-shadow: var(--raised); color: var(--text-h); }
-    .svc-item.selected {
-      border-color: var(--brand);
-      box-shadow: var(--inset-sm);
-      color: var(--brand);
-    }
-    .svc-num {
-      font-size: 0.72rem; font-weight: 800; color: var(--brand);
-      background: var(--base); box-shadow: var(--inset-sm);
-      border-radius: 6px; padding: 3px 8px; flex-shrink: 0;
-    }
-    .svc-confirm { display: flex; gap: 10px; margin-top: 4px; }
-
-    /* Inline elements */
-    .chat-inline-btn {
-      background: var(--base); box-shadow: var(--raised-sm);
-      border: none; border-radius: 50px; padding: 5px 14px;
-      font-family: inherit; font-size: 0.82rem; font-weight: 600;
-      color: var(--brand); cursor: pointer; transition: all 0.25s ease;
-      display: inline-flex; align-items: center;
-    }
-    .chat-inline-btn:hover { box-shadow: var(--raised); }
-    .chat-wa-link {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: linear-gradient(135deg, #25d366, #128c7e);
-      color: white; border-radius: 50px; padding: 8px 18px;
-      font-weight: 700; font-size: 0.85rem;
-      box-shadow: var(--raised-sm); transition: all 0.25s ease;
-    }
-    .chat-wa-link:hover { box-shadow: var(--raised); transform: translateY(-1px); }
-
-    /* Mobile */
     @media (max-width: 768px) {
-      .page-wrap { grid-template-columns: 1fr; }
-      .sidebar { display: none; }
-      .chat-messages { padding: 20px 20px; }
-      .chat-input-bar { padding: 12px 20px 20px; }
-      .quick-replies { padding: 0 20px 8px; }
-      .chat-header { padding: 16px 20px; }
-      .msg { max-width: 96%; }
+      .beast-iframe-card { height: 500px; }
+      .beast-iframe-wrapper { padding: 0 16px; }
+      .beast-tips { grid-template-columns: 1fr; }
     }
   </style>
 </head>
-<body class="beast-chat-page">
-<!-- Beast AI Full-Page Embed -->
-<div style="display:flex;flex-direction:column;height:100vh;background:var(--base);">
-  <!-- Header bar -->
-  <div style="display:flex;align-items:center;gap:14px;padding:16px 28px;background:var(--base);box-shadow:0 4px 12px rgba(184,190,199,0.3);flex-shrink:0;">
-    <a href="index.html" style="display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:600;color:var(--brand);background:var(--base);box-shadow:var(--raised-sm);border-radius:50px;padding:8px 16px;text-decoration:none;">← Back</a>
-    <div style="display:flex;align-items:center;gap:10px;">
-      <div style="width:40px;height:40px;border-radius:50%;background:var(--brand-grad);box-shadow:var(--raised-sm);display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🦁</div>
-      <div>
-        <div style="font-weight:700;color:var(--text-h);font-size:0.95rem;">Beast — AI Marketing Advisor</div>
-        <div style="font-size:0.75rem;color:var(--text-muted);">🟢 Online · LinkBeast AI</div>
+<body>
+
+<!-- ====== NAVBAR ====== -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">🔗</div>
+        <span class="nav-logo-text">Link<span>Beast</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="features.html" class="nav-link">Features</a></li>
+        <li><a href="for-brands.html" class="nav-link">For Brands</a></li>
+        <li><a href="for-creators.html" class="nav-link">For Creators</a></li>
+        <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+        <li><a href="beast-chat.html" class="nav-link nav-beast active">🦁 Beast AI</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="index.html#waitlist" class="btn btn-primary btn-sm">Get Started</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ====== HERO ====== -->
+<div class="beast-chat-hero">
+  <div class="container">
+    <span class="section-label">AI Marketing Advisor</span>
+    <h1>Meet <span class="gradient-text">Beast.</span> Your marketing expert.</h1>
+    <p>Tell Beast your budget and goals — get instant recommendations on SEO, Meta Ads, influencer campaigns, and the right creators for your Indian brand.</p>
+    <div class="beast-features">
+      <span class="beast-feature-pill">📊 Smart budget matching</span>
+      <span class="beast-feature-pill">🌟 Influencer recommendations</span>
+      <span class="beast-feature-pill">📦 Service selection help</span>
+      <span class="beast-feature-pill">⚡ Instant responses</span>
+    </div>
+  </div>
+</div>
+
+<!-- ====== IFRAME CHAT ====== -->
+<div class="beast-iframe-section">
+  <div class="beast-iframe-wrapper">
+    <div class="beast-iframe-card">
+      <!-- Loading placeholder -->
+      <div class="beast-loading" id="beastLoading">
+        <div class="beast-loading-icon">🦁</div>
+        <p>Beast is waking up…</p>
+      </div>
+      <iframe
+        id="beastFrame"
+        src="https://creator.voiceflow.com/share/69d609489ca97f4bf39b579f/development"
+        title="Beast — LinkBeast AI Marketing Advisor"
+        allow="microphone"
+        onload="document.getElementById('beastLoading').classList.add('hidden')"
+      ></iframe>
+    </div>
+
+    <!-- Tips row -->
+    <div class="beast-tips">
+      <div class="beast-tip fade-up">
+        <div class="beast-tip-icon">💸</div>
+        <h4>Share your budget</h4>
+        <p>Tell Beast your monthly marketing budget in ₹ to get precise plan recommendations.</p>
+      </div>
+      <div class="beast-tip fade-up stagger-1">
+        <div class="beast-tip-icon">🎯</div>
+        <h4>State your goal</h4>
+        <p>Brand awareness? More sales? More followers? Beast tailors its recommendations to your outcome.</p>
+      </div>
+      <div class="beast-tip fade-up stagger-2">
+        <div class="beast-tip-icon">📍</div>
+        <h4>Mention your city</h4>
+        <p>Delhi, Mumbai, Jaipur? Local creators and local SEO strategies are matched to your geography.</p>
       </div>
     </div>
   </div>
-
-  <!-- Voiceflow Embedded Chat -->
-  <div
-    id="beast-embed-container"
-    style="
-      flex: 1;
-      width: 100%;
-      min-height: 520px;
-      border-radius: 0;
-      overflow: hidden;
-      background: #f0f4f6;
-    "
-  ></div>
 </div>
 
-<script type="text/javascript">
-  (function(d, t) {
-    var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-    v.onload = function() {
-      window.voiceflow.chat.load({
-        verify: { projectID: '69d609489ca97f4bf39b579f' },
-        url: 'https://general-runtime.voiceflow.com',
-        versionID: 'development',
-        render: {
-          mode: 'embedded',
-          target: document.getElementById('beast-embed-container')
-        },
-        assistant: {
-          title: 'Beast',
-          description: 'LinkBeast AI Marketing Advisor',
-          color: '#0d3349',
-          image: 'https://link-beast.vercel.app/assets/linkbeast-lion.png'
-        },
-        chat: {
-          showPoweredBy: false,
-          persistence: 'session'
-        }
-      });
-    };
-    v.src = 'https://cdn.voiceflow.com/widget/bundle.mjs';
-    v.type = 'text/javascript';
-    s.parentNode.insertBefore(v, s);
-  })(document, 'script');
-</script>
-<script>
-  // ============================================================
-  // CHAT UI CONTROLLER
-  // ============================================================
-
-  const messagesEl = document.getElementById('chatMessages');
-  const inputEl    = document.getElementById('userInput');
-  const quickEl    = document.getElementById('quickReplies');
-
-  function getTime() {
-    return new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
-  }
-
-  function appendBeast(html, delay = 0) {
-    // Show typing
-    const typingId = 'typing-' + Date.now();
-    const typingEl = document.createElement('div');
-    typingEl.className = 'msg beast';
-    typingEl.id = typingId;
-    typingEl.innerHTML = `
-      <div class="msg-avatar">🦁</div>
-      <div class="msg-bubble">
-        <div class="typing-indicator">
-          <div class="typing-dot"></div>
-          <div class="typing-dot"></div>
-          <div class="typing-dot"></div>
+<!-- ====== FOOTER ====== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="margin-bottom:0;">
+          <div class="nav-logo-icon">🔗</div>
+          <span class="nav-logo-text">Link<span>Beast</span></span>
+        </a>
+        <p>India's first unified digital marketing ecosystem — connecting SMEs with verified creators, freelancers, and full-service marketing. By ConnectSutra Digital.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" aria-label="Instagram">📸</a>
+          <a href="#" class="social-btn" aria-label="LinkedIn">💼</a>
+          <a href="https://wa.me/919999999999" class="social-btn" aria-label="WhatsApp">💬</a>
+          <a href="#" class="social-btn" aria-label="Twitter">🐦</a>
         </div>
-      </div>`;
-    messagesEl.appendChild(typingEl);
-    scrollToBottom();
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <div class="footer-links">
+          <a href="features.html">Features</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="for-brands.html">For Brands</a>
+          <a href="for-creators.html">For Creators</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <div class="footer-links">
+          <a href="about.html">About Us</a>
+          <a href="contact.html">Contact</a>
+          <a href="index.html#waitlist">Join Waitlist</a>
+          <a href="#">Blog</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Get in Touch</h4>
+        <div class="footer-contact-item"><span class="icon">📍</span> New Delhi, India</div>
+        <div class="footer-contact-item"><span class="icon">📧</span> hello@linkbeast.in</div>
+        <div class="footer-contact-item"><span class="icon">📱</span> +91 99999 99999</div>
+        <a href="https://wa.me/919999999999" class="whatsapp-btn" style="font-size:0.85rem;padding:12px 20px;margin-top:12px;">
+          💬 WhatsApp Us
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 ConnectSutra Digital. All rights reserved. | LinkBeast — Let's Grow 🚀</span>
+      <div style="display:flex;gap:20px;">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
-    setTimeout(() => {
-      // Remove typing
-      const old = document.getElementById(typingId);
-      if (old) old.remove();
-      // Add real message
-      const el = document.createElement('div');
-      el.className = 'msg beast';
-      el.innerHTML = `
-        <div class="msg-avatar">🦁</div>
-        <div>
-          <div class="msg-bubble">${html}</div>
-          <div class="msg-time">${getTime()}</div>
-        </div>`;
-      messagesEl.appendChild(el);
-      scrollToBottom();
-      updateQuickReplies();
-    }, delay || 900 + Math.random() * 400);
-  }
+<!-- Beast AI launcher on this page just reloads the chat iframe -->
+<a id="beast-launcher" href="beast-chat.html" title="Chat with Beast AI" style="display:none;">
+  <img src="assets/linkbeast-lion.png" alt="Beast AI" id="beast-launcher-img" />
+  <span id="beast-launcher-label">Ask Beast</span>
+</a>
 
-  function appendUser(text) {
-    const el = document.createElement('div');
-    el.className = 'msg user';
-    el.innerHTML = `
-      <div class="msg-avatar">You</div>
-      <div>
-        <div class="msg-bubble">${escapeHtml(text)}</div>
-        <div class="msg-time">${getTime()}</div>
-      </div>`;
-    messagesEl.appendChild(el);
-    scrollToBottom();
-    clearQuickReplies();
-  }
-
-  function escapeHtml(t) {
-    const d = document.createElement('div');
-    d.textContent = t;
-    return d.innerHTML;
-  }
-
-  function scrollToBottom() {
-    messagesEl.scrollTop = messagesEl.scrollHeight;
-  }
-
-  function clearQuickReplies() { quickEl.innerHTML = ''; }
-
-  function updateQuickReplies() {
-    clearQuickReplies();
-    const step = window.BeastChat ? 0 : 0; // Future: step-based chips
-    // Always show restart
-    const chips = [];
-    if (chips.length === 0) return;
-    chips.forEach(c => {
-      const btn = document.createElement('button');
-      btn.className = 'quick-chip';
-      btn.textContent = c;
-      btn.onclick = () => sendQuick(c);
-      quickEl.appendChild(btn);
-    });
-  }
-
-  function handleSend() {
-    const text = inputEl.value.trim();
-    if (!text) return;
-    inputEl.value = '';
-    appendUser(text);
-    const response = BeastChat.processInput(text);
-    appendBeast(response);
-  }
-
-  window.sendQuick = function(text) {
-    inputEl.value = '';
-    appendUser(text);
-    const response = BeastChat.processInput(text);
-    appendBeast(response);
-  };
-
-  window.restartChat = function() {
-    BeastChat.resetState();
-    appendBeast(BeastChat.getGreeting());
-  };
-
-  // Enter key
-  inputEl.addEventListener('keydown', e => {
-    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); }
-  });
-
-  // Start the conversation
-  window.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => appendBeast(BeastChat.getGreeting(), 600), 200);
-  });
-</script>
+<script src="main.js"></script>
 </body>
 </html>

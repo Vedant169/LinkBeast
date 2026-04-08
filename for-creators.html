@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -342,42 +342,15 @@
 </footer>
 <script src="main.js"></script>
 
-<script type="text/javascript">
-  (function(d, t) {
-    var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-    v.onload = function() {
-      window.voiceflow.chat.load({
-        verify: { projectID: '69d609489ca97f4bf39b579f' },
-        url: 'https://general-runtime.voiceflow.com',
-        versionID: 'development',
-        assistant: {
-          title: 'Beast',
-          description: 'Your AI Marketing Advisor — LinkBeast',
-          color: '#0d3349',
-          image: 'https://link-beast.vercel.app/assets/linkbeast-lion.png'
-        },
-        chat: {
-          showPoweredBy: false,
-          persistence: 'session'
-        }
-      });
-    };
-    v.src = 'https://cdn.voiceflow.com/widget/bundle.mjs';
-    v.type = 'text/javascript';
-    s.parentNode.insertBefore(v, s);
-  })(document, 'script');
-</script>
-
 <!-- Beast AI Custom Launcher Button -->
-<div id="beast-launcher" title="Chat with Beast AI" onclick="window.voiceflow.chat.open()">
+<a id="beast-launcher" href="beast-chat.html" title="Chat with Beast AI">
   <img
     src="assets/linkbeast-lion.png"
     alt="Beast AI"
     id="beast-launcher-img"
   />
   <span id="beast-launcher-label">Ask Beast</span>
-</div>
-</body>
+</a>`r`n</body>
 </html>
 
 
