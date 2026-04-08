@@ -80,12 +80,24 @@
     }
     .back-btn:hover { box-shadow: var(--shadow-raised); }
 
-    /* ---- Main area: sidebar + iframe ---- */
+    /* ---- Main area: sidebar + middle + iframe ---- */
     .beast-body {
       display: grid;
-      grid-template-columns: 420px 1fr;
+      grid-template-columns: 300px 260px 1fr;
       flex: 1;
       overflow: hidden;
+    }
+
+    /* ---- Middle panel ---- */
+    .beast-middle {
+      background: var(--base);
+      box-shadow: 4px 0 12px rgba(184,190,199,.2);
+      overflow-y: hidden;
+      padding: 20px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      z-index: 4;
     }
 
     /* ---- Sidebar ---- */
@@ -288,12 +300,17 @@
         </div>
       </div>
 
+    </aside>
+
+    <!-- MIDDLE PANEL - Service Pricing + Tip -->
+    <div class="beast-middle">
+
       <div class="side-sect">
-        <h4>Service Pricing (₹)</h4>
+        <h4>Service Pricing (&#8377;)</h4>
         <div class="svcs-wrap">
-          <div class="svc">📈 SEO <span class="svc-p">₹5K–₹80K/mo</span></div>
-          <div class="svc">🎯 Meta Ads <span class="svc-p">₹5K–₹1L/mo</span></div>
-          <div class="svc">🤝 Influencers <span class="svc-p">₹5K–₹2L/campaign</span></div>
+          <div class="svc">📈 SEO <span class="svc-p">&#8377;5K&#8211;&#8377;80K/mo</span></div>
+          <div class="svc">🎯 Meta Ads <span class="svc-p">&#8377;5K&#8211;&#8377;1L/mo</span></div>
+          <div class="svc">🤝 Influencers <span class="svc-p">&#8377;5K&#8211;&#8377;2L/campaign</span></div>
         </div>
       </div>
 
@@ -303,7 +320,7 @@
         <a href="contact.html">Talk to humans →</a>
       </div>
 
-    </aside>
+    </div>
 
     <!-- IFRAME AREA — fills all remaining space -->
     <div class="beast-iframe-area">
