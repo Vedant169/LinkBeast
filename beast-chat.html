@@ -92,66 +92,84 @@
     .beast-side {
       background: var(--base);
       box-shadow: 4px 0 12px rgba(184,190,199,.3);
-      overflow-y: auto;
-      padding: 20px 16px;
+      overflow: hidden;           /* no scrollbar */
+      padding: 16px 14px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      justify-content: space-between; /* stretch sections to fill height */
       z-index: 5;
     }
-    .side-sect { }
+    .side-sect {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+    }
     .side-sect h4 {
-      font-size: 0.65rem; font-weight: 700;
+      font-size: 0.64rem; font-weight: 700;
       text-transform: uppercase; letter-spacing: .12em;
-      color: var(--text-muted); margin: 0 0 10px;
+      color: var(--text-muted); margin: 0 0 8px;
+      flex-shrink: 0;
+    }
+    /* caps stretch to fill section */
+    .caps-wrap {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 6px;
     }
     .side-cap {
-      display: flex; align-items: flex-start; gap: 9px;
-      padding: 9px 10px; margin-bottom: 7px;
+      display: flex; align-items: center; gap: 10px;
+      padding: 0 12px;
       background: var(--base);
       box-shadow: var(--shadow-inset-xs);
       border-radius: var(--radius-sm);
+      flex: 1;                    /* each cap expands equally */
     }
-    .side-cap:last-child { margin-bottom: 0; }
-    .side-cap-ico { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
-    .side-cap-ttl { font-size: 0.81rem; font-weight: 600; color: var(--text-dark); margin-bottom: 1px; }
-    .side-cap-dsc { font-size: 0.72rem; color: var(--text-muted); }
+    .side-cap-ico { font-size: 1.2rem; flex-shrink: 0; }
+    .side-cap-ttl { font-size: 0.83rem; font-weight: 600; color: var(--text-dark); margin-bottom: 2px; }
+    .side-cap-dsc { font-size: 0.73rem; color: var(--text-muted); }
 
-    .stat-g { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+    .stat-g { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; flex: 1; }
     .stat-c {
       background: var(--base);
       box-shadow: var(--shadow-inset-sm);
       border-radius: var(--radius-sm);
-      padding: 11px 8px; text-align: center;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
     }
-    .stat-c .n { display: block; font-size: 1.05rem; font-weight: 800; color: var(--primary); }
-    .stat-c .l { font-size: 0.62rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em; }
+    .stat-c .n { display: block; font-size: 1.15rem; font-weight: 800; color: var(--primary); }
+    .stat-c .l { font-size: 0.62rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em; margin-top: 2px; }
 
+    .svcs-wrap { display: flex; flex-direction: column; flex: 1; gap: 6px; }
     .svc {
       display: flex; align-items: center; gap: 7px;
-      padding: 8px 10px; margin-bottom: 6px;
+      padding: 0 12px;
       background: var(--base);
       box-shadow: var(--shadow-raised-sm);
       border-radius: var(--radius-xs);
-      font-size: 0.78rem; font-weight: 600; color: var(--text-dark);
+      font-size: 0.8rem; font-weight: 600; color: var(--text-dark);
+      flex: 1;                    /* each row stretches */
     }
-    .svc:last-child { margin-bottom: 0; }
-    .svc-p { margin-left: auto; font-size: 0.7rem; color: var(--primary); font-weight: 700; }
+    .svc-p { margin-left: auto; font-size: 0.72rem; color: var(--primary); font-weight: 700; }
 
     .tip-box {
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       border-radius: var(--radius-md);
-      padding: 16px;
+      padding: 18px 16px;
       color: #f9fafb;
+      flex: 1;
+      display: flex; flex-direction: column; justify-content: center;
     }
-    .tip-box h5 { font-size: 0.82rem; font-weight: 700; margin-bottom: 8px; }
-    .tip-box p  { font-size: 0.75rem; opacity: .85; margin: 0 0 12px; line-height: 1.5; }
+    .tip-box h5 { font-size: 0.85rem; font-weight: 700; margin-bottom: 8px; }
+    .tip-box p  { font-size: 0.77rem; opacity: .85; margin: 0 0 14px; line-height: 1.55; }
     .tip-box a  {
       display: inline-flex; align-items: center; gap: 5px;
       font-size: 0.78rem; font-weight: 700;
       color: #fff; background: rgba(255,255,255,.2);
       border-radius: var(--radius-pill);
-      padding: 6px 14px; text-decoration: none;
+      padding: 7px 16px; text-decoration: none;
+      align-self: flex-start;
     }
 
     /* ---- Iframe fills the right ---- */
@@ -247,25 +265,27 @@
 
       <div class="side-sect">
         <h4>What Beast can do</h4>
-        <div class="side-cap">
-          <span class="side-cap-ico">📊</span>
-          <div>
-            <div class="side-cap-ttl">Budget Matching</div>
-            <div class="side-cap-dsc">Plans from ₹5K to ₹5L/month</div>
+        <div class="caps-wrap">
+          <div class="side-cap">
+            <span class="side-cap-ico">📊</span>
+            <div>
+              <div class="side-cap-ttl">Budget Matching</div>
+              <div class="side-cap-dsc">Plans tailored from ₹5K to ₹5L/month</div>
+            </div>
           </div>
-        </div>
-        <div class="side-cap">
-          <span class="side-cap-ico">🌟</span>
-          <div>
-            <div class="side-cap-ttl">Influencer Matching</div>
-            <div class="side-cap-dsc">Nano to Macro by niche &amp; city</div>
+          <div class="side-cap">
+            <span class="side-cap-ico">🌟</span>
+            <div>
+              <div class="side-cap-ttl">Influencer Matching</div>
+              <div class="side-cap-dsc">Nano to Macro by niche &amp; city</div>
+            </div>
           </div>
-        </div>
-        <div class="side-cap">
-          <span class="side-cap-ico">📦</span>
-          <div>
-            <div class="side-cap-ttl">Service Recommendations</div>
-            <div class="side-cap-dsc">SEO, Meta Ads, SME Bundles</div>
+          <div class="side-cap">
+            <span class="side-cap-ico">📦</span>
+            <div>
+              <div class="side-cap-ttl">Service Recommendations</div>
+              <div class="side-cap-dsc">SEO, Meta Ads, SME Bundles</div>
+            </div>
           </div>
         </div>
       </div>
@@ -282,14 +302,16 @@
 
       <div class="side-sect">
         <h4>Service Pricing (₹)</h4>
-        <div class="svc">📈 SEO <span class="svc-p">₹5K–₹80K/mo</span></div>
-        <div class="svc">🎯 Meta Ads <span class="svc-p">₹5K–₹1L/mo</span></div>
-        <div class="svc">🤝 Influencers <span class="svc-p">₹5K–₹2L</span></div>
+        <div class="svcs-wrap">
+          <div class="svc">📈 SEO <span class="svc-p">₹5K–₹80K/mo</span></div>
+          <div class="svc">🎯 Meta Ads <span class="svc-p">₹5K–₹1L/mo</span></div>
+          <div class="svc">🤝 Influencers <span class="svc-p">₹5K–₹2L/campaign</span></div>
+        </div>
       </div>
 
       <div class="tip-box">
         <h5>💡 Get a better answer</h5>
-        <p>Tell Beast your monthly budget, industry, and target city for precise recommendations.</p>
+        <p>Tell Beast your monthly budget, industry, and target city for precise, personalised recommendations.</p>
         <a href="contact.html">Talk to humans →</a>
       </div>
 
